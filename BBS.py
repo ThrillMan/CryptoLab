@@ -5,8 +5,8 @@ import random
 # print(bin(state))
 # print(state)
 
-minPrime = 1000
-maxPrime = 1000000
+minPrime = 10000
+maxPrime = 100000000
 cached_primes = [i for i in range(minPrime,maxPrime) if isprime(i) and i % 4 == 3]
 
 p = random.choice([i for i in cached_primes])

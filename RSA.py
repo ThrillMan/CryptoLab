@@ -2,22 +2,14 @@ from sympy import *
 import random
 import math
 
-minPrime = 999
-maxPrime = 99999
-cached_primes = [i for i in range(minPrime,maxPrime) if isprime(i)]
-print(cached_primes)
-# p = random.choice([i for i in cached_primes])
-# q = random.choice([i for i in cached_primes])
-
-# p=4253
-# q=9973
-
-#values taken from internet
-p = 983531983579983617983777983791983819
-q = 999998727899999
-
-
-print("p,q",p,q)
+bits = 1024
+p = randprime(2**(bits-1), 2**bits)
+q = randprime(2**(bits-1), 2**bits)
+#there is no way to encode 50 letters message with only 4digits long p and q
+while p == q:  # to make sure even though chance is low that p and q are the same value
+    q = randprime(2**(bits-1), 2**bits)
+print("p",p)
+print("q",q)
 
 n = p * q
 print("n",n)
@@ -25,12 +17,11 @@ print("n",n)
 phi = (p-1)*(q-1)
 print("phi",phi)
 
-e=0
+#apparently it is commonly used value
+#wiemy ze sa wzglednie pierwsze poniewaz sa to dwie rozne liczby pierwsze
+e=65537
 
-for i in cached_primes:
-    if math.gcd(i,phi)==1:
-        e=i
-        break
+
 print("e",e)
 
 d = pow(e,-1,phi)
