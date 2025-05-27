@@ -26,7 +26,6 @@ def encrypt_img(img,secret_password):
     secret_password = string_to_binary(secret_password)
     password_len = len(secret_password)
     imgX = np.size(img, 1)
-    test= ""
     for i in range(0,password_len,3):
         index_x = i%imgX
         index_y = i // imgX
@@ -35,9 +34,7 @@ def encrypt_img(img,secret_password):
             #print("r:", r)
             r = format(r, '08b')
             #print("r:", r)
-            #test += r[-1]
             r = r[:-1] + secret_password[i]
-            test += r[-1]
             #print("r:",r)
             r = int(r, 2)
             #print("r:", r)
@@ -71,7 +68,6 @@ secret_image.save('data/secret_img.png', format='PNG', compress_level=0)
 def decrypt_img(img,password_len):
     secret_password = ""
     imgX = np.size(img, 1)
-    test=""
     for i in range(0, password_len, 3):
         index_x = i % imgX
         index_y = i // imgX
@@ -79,7 +75,6 @@ def decrypt_img(img,password_len):
             r = img[index_y][index_x][0]
             r = format(r, '08b')
             secret_password += r[-1]
-            test+=r[-1]
 
         if index_x + 1 < password_len:
             g = img[index_y][index_x][1]
